@@ -2,6 +2,7 @@
 FROM golang:1.17 as one
 WORKDIR /src/
 ENV GOPROXY=https://proxy.golang.com.cn,direct
+ENV GIN_MODE=release
 COPY go.mod go.sum ./
 RUN go mod download && go mod verify
 COPY . .
