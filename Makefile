@@ -11,6 +11,9 @@ build: fmt
 # Local development
 dev:
 	$(GO) run ./app/main.go
+# Build docker image
+docker:
+	docker build -f ./build/docker/Dockerfile -t impossible98/$(BIN_NAME) .
 # Format the code
 fmt:
 	@echo -e "\033[32mFormatting the code...\033[0m"
