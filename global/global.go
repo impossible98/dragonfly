@@ -1,5 +1,6 @@
 package global
 
 const (
-	VERSION string = "0.0.1"
+	APP_NAME string = "Dragonfly"
+	VERSION  string = "0.0.1"
 )
