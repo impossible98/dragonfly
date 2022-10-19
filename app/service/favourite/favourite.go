@@ -60,20 +60,38 @@ func ReadFavourite(platform string, roomId string) (*model.Favourite, error) {
 }
 
 func UpdateFavourite(platform string, roomId string) (*model.Favourite, error) {
-	favourite := model.Favourite{
-		Platform: platform,
-		RoomId:   roomId,
-	}
 	// control flow
-	if err := database.SetupDatabase().First(&favourite).Error; err != nil {
+	if platform == "bilibili" {
+		liveStatus, newRoomId, uid := bilibili.LiveStatus(roomId)
+		// control flow
+		if liveStatus {
+			newUpper := bilibili.Upper(uid)
+			favourite := model.Favourite{
+				Platform: platform,
+				RoomId:   newRoomId,
+				Upper:    newUpper,
+			}
+			err := database.SetupDatabase().First(&favourite).Error
+			// control flow
+			if err != nil {
+				// return
+				return nil, err
+			} else {
+				if err := database.SetupDatabase().Save(&favourite).Error; err != nil {
+					// return
+					return nil, err
+				} else {
+					// return
+					return &favourite, nil
+				}
+			}
+		} else {
+			return nil, errors.New("live room is not existed")
+		}
+	} else {
 		// return
-		return nil, err
+		return nil, errors.New("plaform is not existed")
 	}
-	if err := database.SetupDatabase().Save(&favourite).Error; err != nil {
-		// return
-		return nil, err
-	}
-	return &favourite, nil
 }
 
 func DeleteFavourite(platform string, roomId string) (*model.Favourite, error) {
