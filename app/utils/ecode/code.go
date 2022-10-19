@@ -5,4 +5,5 @@ const (
 	InvalidParams        = -1
 	ErrorCreateFavourite = 10001
 	ErrorReadFavourite   = 10002
+	ErrorUpdateFavourite = 10003
 )

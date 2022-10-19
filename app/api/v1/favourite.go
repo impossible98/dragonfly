@@ -45,3 +45,21 @@ func ReadFavourite(ctx *gin.Context) {
 	}
 	format.HTTP(ctx, ecode.Success, nil, result)
 }
+
+func UpdateFavourite(ctx *gin.Context) {
+	request := Request{}
+	// control flow
+	if err := ctx.ShouldBind(&request); err != nil {
+		format.HTTP(ctx, ecode.InvalidParams, err, nil)
+		// return
+		return
+	}
+	r, err := favourite.UpdateFavourite(request.Platform, request.RoomId, request.Upper)
+	// control flow
+	if err != nil {
+		format.HTTP(ctx, ecode.ErrorUpdateFavourite, err, nil)
+		// return
+		return
+	}
+	format.HTTP(ctx, ecode.Success, nil, r)
+}
