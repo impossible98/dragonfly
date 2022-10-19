@@ -16,6 +16,7 @@ func ShowInfo(startTime int64) {
 	fmt.Print("\033[H\033[2J")
 	endTime := time.Now().UnixNano()
 	difference := (endTime - startTime) / 1000 / 1000
+	// control flow
 	if difference == 0 {
 		fmt.Printf("  %s %s  %s %s ms\n", color.Bold(color.Green(global.APP_NAME)), color.Green("v"+global.VERSION), color.Dim("ready in"), color.Bold(strconv.Itoa(1)))
 	} else {

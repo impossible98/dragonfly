@@ -17,6 +17,7 @@ func HTTP(c *gin.Context, code int, err error, data interface{}) {
 	}
 
 	var msg = ecode.GetMsg(code)
+	// control flow
 	if err != nil {
 		msg += fmt.Sprintf(": %s", err.Error())
 	}

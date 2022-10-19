@@ -1,4 +1,9 @@
 [server]
-PORT=8080
+port=8080
 [database]
 type="sqlite3"
+host=""
+port=0
+user=""
+password=""
+database=""
