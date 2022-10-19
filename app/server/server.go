@@ -21,6 +21,7 @@ func SetupServer() {
 		apiV1.GET("/favourite", v1.ReadFavourite)
 		apiV1.PATCH("/favourite", v1.UpdateFavourite)
 		apiV1.DELETE("/favourite", v1.DeleteFavourite)
+		apiV1.GET("/favourite/list", v1.ReadFavouriteList)
 	}
 	app.Run(":" + strconv.Itoa(config.ServerPort))
 }
