@@ -7,9 +7,10 @@ import (
 
 type Favourite struct {
 	gorm.Model
-	Platform string `gorm:"not null" json:"platform"`
-	RoomId   string `gorm:"not null" json:"room_id"`
-	Upper    string `json:"upper"`
+	Platform   string `gorm:"not null" json:"platform"`
+	RoomId     string `gorm:"not null" json:"room_id"`
+	RealRoomId string `gorm:"not null" json:"real_room_id"`
+	Upper      string `json:"upper"`
 }
 
 func (Favourite) TableName() string {

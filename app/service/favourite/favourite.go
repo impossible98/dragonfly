@@ -17,24 +17,19 @@ func CreateFavourite(platform string, roomId string) (*model.Favourite, error) {
 		if liveStatus {
 			newUpper := bilibili.Upper(uid)
 			favourite := model.Favourite{
-				Platform: platform,
-				RoomId:   newRoomId,
-				Upper:    newUpper,
+				Platform:   platform,
+				RoomId:     roomId,
+				RealRoomId: newRoomId,
+				Upper:      newUpper,
 			}
-			err := database.SetupDatabase().First(&favourite).Error
 			// control flow
+			err := database.SetupDatabase().Create(&favourite).Error
 			if err != nil {
-				// control flow
-				err := database.SetupDatabase().Create(&favourite).Error
-				if err != nil {
-					// return
-					return nil, err
-				} else {
-					// return
-					return &favourite, nil
-				}
+				// return
+				return nil, err
 			} else {
-				return nil, errors.New("data is existed")
+				// return
+				return &favourite, nil
 			}
 		} else {
 			return nil, errors.New("live room is not existed")

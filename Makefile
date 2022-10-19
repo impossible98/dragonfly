@@ -8,6 +8,11 @@ build: fmt
 	@echo -e "\033[32mBuilding the application...\033[0m"
 	$(GO) build -ldflags "-s -w" -o ./dist/$(BIN_NAME) ./app/main.go
 	@echo -e "\033[32mBuild finished.\033[0m"
+# Clean the temp
+clean:
+	@echo -e "\033[32mCleaning the temp...\033[0m"
+	@rm -rf ./data/
+	@echo -e "\033[32mClean finished.\033[0m"
 # Local development
 dev:
 	$(GO) run ./app/main.go
