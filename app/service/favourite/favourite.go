@@ -50,13 +50,13 @@ func ReadFavourite(platform string, roomId string) (*model.Favourite, error) {
 		Platform: platform,
 		RoomId:   roomId,
 	}
+	err := database.SetupDatabase().First(&favourite).Error
 	// control flow
-	if err := database.SetupDatabase().First(&favourite).Limit(1).Error; err != nil {
-		// return
+	if err != nil {
 		return nil, err
+	} else {
+		return &favourite, nil
 	}
-	// return
-	return &favourite, nil
 }
 
 func UpdateFavourite(platform string, roomId string) (*model.Favourite, error) {
