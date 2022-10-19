@@ -52,3 +52,22 @@ func UpdateFavourite(platform string, roomId string, upper string) (*model.Favou
 	}
 	return &favourite, nil
 }
+
+func DeleteFavourite(platform string, roomId string) (*model.Favourite, error) {
+	favourite := model.Favourite{
+		Platform: platform,
+		RoomId:   roomId,
+	}
+	// control flow
+	if err := database.SetupDatabase().First(&favourite).Error; err != nil {
+		// return
+		return nil, err
+	}
+	// control flow
+	if err := database.SetupDatabase().Delete(&favourite).Error; err != nil {
+		// return
+		return nil, err
+	}
+	// return
+	return &favourite, nil
+}
