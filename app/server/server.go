@@ -18,6 +18,7 @@ func SetupServer() {
 	apiV1 := app.Group("/api/v1")
 	{
 		apiV1.POST("/favourite", v1.CreateFavourite)
+		apiV1.GET("/favourite", v1.ReadFavourite)
 	}
 	app.Run(":" + strconv.Itoa(config.ServerPort))
 }
