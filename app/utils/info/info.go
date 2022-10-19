@@ -22,6 +22,7 @@ func ShowInfo(startTime int64) {
 		fmt.Printf("  %s %s  %s %s ms\n", color.Bold(color.Green(global.APP_NAME)), color.Green("v"+global.VERSION), color.Dim("ready in"), color.Bold(strconv.Itoa(int(difference))))
 	}
 	fmt.Println()
-	fmt.Printf("  %s  %s   %s\n", color.Green("➜"), color.Bold("Local:"), color.Cyan("http://127.0.0.1:"+strconv.Itoa(config.PORT)+"/"))
-	fmt.Printf("  %s  %s %s\n", color.Green("➜"), color.Bold("Network:"), color.Cyan("http://"+ip.Ip()+":"+strconv.Itoa(config.PORT)+"/"))
+	fmt.Printf("  %s  %s   %s\n", color.Green("➜"), color.Bold("Local:"), color.Cyan("http://127.0.0.1:"+strconv.Itoa(config.ServerPort)+"/"))
+	fmt.Printf("  %s  %s %s\n", color.Green("➜"), color.Bold("Network:"), color.Cyan("http://"+ip.Ip()+":"+strconv.Itoa(config.ServerPort)+"/"))
+	fmt.Println()
 }
