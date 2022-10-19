@@ -12,7 +12,6 @@ import (
 type Request struct {
 	Platform string `json:"platform" binding:"required"`
 	RoomId   string `json:"room_id" binding:"required" `
-	Upper    string `form:"upper" json:"upper"`
 }
 
 func CreateFavourite(ctx *gin.Context) {
@@ -23,7 +22,7 @@ func CreateFavourite(ctx *gin.Context) {
 		// return
 		return
 	}
-	result, err := favourite.CreateFavourite(request.Platform, request.RoomId, request.Upper)
+	result, err := favourite.CreateFavourite(request.Platform, request.RoomId)
 	// control flow
 	if err != nil {
 		format.HTTP(ctx, ecode.ErrorCreateFavourite, err, nil)
@@ -54,7 +53,7 @@ func UpdateFavourite(ctx *gin.Context) {
 		// return
 		return
 	}
-	result, err := favourite.UpdateFavourite(request.Platform, request.RoomId, request.Upper)
+	result, err := favourite.UpdateFavourite(request.Platform, request.RoomId)
 	// control flow
 	if err != nil {
 		format.HTTP(ctx, ecode.ErrorUpdateFavourite, err, nil)
