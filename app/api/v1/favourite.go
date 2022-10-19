@@ -32,3 +32,16 @@ func CreateFavourite(ctx *gin.Context) {
 	}
 	format.HTTP(ctx, ecode.Success, nil, result)
 }
+
+func ReadFavourite(ctx *gin.Context) {
+	platform := ctx.Query("platform")
+	roomId := ctx.Query("room_id")
+	result, err := favourite.ReadFavourite(platform, roomId)
+	// control flow
+	if err != nil {
+		format.HTTP(ctx, ecode.ErrorReadFavourite, err, nil)
+		// return
+		return
+	}
+	format.HTTP(ctx, ecode.Success, nil, result)
+}
