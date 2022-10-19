@@ -5,6 +5,7 @@ var msg = map[int]string{
 	InvalidParams:        "invalid params",
 	ErrorCreateFavourite: "failed to create favourite",
 	ErrorReadFavourite:   "failed to read favourite",
+	ErrorUpdateFavourite: "failed to update favourite",
 }
 
 func GetMsg(code int) string {

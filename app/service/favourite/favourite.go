@@ -34,3 +34,21 @@ func ReadFavourite(platform string, roomId string) (*model.Favourite, error) {
 	// return
 	return &favourite, nil
 }
+
+func UpdateFavourite(platform string, roomId string, upper string) (*model.Favourite, error) {
+	favourite := model.Favourite{
+		Platform: platform,
+		RoomId:   roomId,
+		Upper:    upper,
+	}
+	// control flow
+	if err := database.SetupDatabase().First(&favourite).Error; err != nil {
+		// return
+		return nil, err
+	}
+	if err := database.SetupDatabase().Save(&favourite).Error; err != nil {
+		// return
+		return nil, err
+	}
+	return &favourite, nil
+}
